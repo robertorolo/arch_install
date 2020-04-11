@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd /
-DISK = sda
+DISK=sda
 
 # Set the time zone
 echo "Setting timezone."
