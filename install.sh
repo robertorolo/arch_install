@@ -52,8 +52,9 @@ mkswap /dev/${DISK}2
 swapon /dev/${DISK}2
 
 mkfs.ext4 /dev/${DISK}1
+
 fdisk -l
-sleep 1
+sleep 3
 
 # Mount the file systems
 echo "Mounting file systems."
