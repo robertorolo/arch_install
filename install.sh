@@ -27,26 +27,21 @@ if [[ -d /sys/firmware/efi/efivars ]]; then
 else
   echo "Boot mode BIOS"
   (
-  echo o            # Create a new empty DOS partition table
-  echo n            # Add a new partition
-  echo p            # Primary partition
-  echo 1            # Partition number
-  echo              # First sector (Accept default: 1)
-  echo +$SWAP_SIZE  # Last sector (Accept default: varies)
-  echo n            # Add a new partition
-  echo p            # Primary partition
-  echo 2            # Partition number
-  echo              # First sector (Accept default: 1)
-  echo              # Last sector (Accept default: varies)
-  echo a            # Flag as boot
-  echo w            # Write changes
+  echo o # Create a new empty DOS partition table
+  echo n # Add a new partition
+  echo   # Primary partition
+  echo   # Partition number
+  echo   # First sector (Accept default: 1)
+  echo   # Last sector (Accept default: varies)
+  echo a # Flag as boot
+  echo w # Write changes
 ) | fdisk /dev/$DISK
 fi
 
 # Format the partitions
-mkswap /dev/${DISK}1
-swapon /dev/${DISK}1
+#mkswap /dev/${DISK}1
+#swapon /dev/${DISK}1
 
-mkfs.ext4 /dev/${DISK}2
+mkfs.ext4 /dev/${DISK}1
 fdisk -l
 sleep 1
