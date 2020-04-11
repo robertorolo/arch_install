@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd /
+
 # Set the time zone
 echo "Setting timezone."
 ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
@@ -29,14 +31,14 @@ sleep 2
 
 # Setting root password
 read -p "Type root passwd > " rootpwd
-passwd $rootpwd
+echo  $rootpwd | passwd
 sleep 2
 
 # Creating a user
 read -p "Type user name > " username
 read -p "Type user passwd > " userpwd
 useradd -m -g users -G wheel $username
-passwd $userpwd
+echo $userpwd | passwd $username
 echo $username ALL=(ALL) ALL >> /etc/sudoers
 echo %wheel    ALL=(ALL) ALL >> /etc/sudoers
 sleep 2
