@@ -39,8 +39,8 @@ read -p "Type user name > " username
 read -p "Type user passwd > " userpwd
 useradd -m -g users -G wheel $username
 echo -e "$userpwd\n$userpwd" | passwd $username
-echo $username ALL=(ALL) ALL >> /etc/sudoers
-echo %wheel    ALL=(ALL) ALL >> /etc/sudoers
+echo -e "$username ALL=(ALL) ALL" >> /etc/sudoers
+echo -e "%wheel    ALL=(ALL) ALL" >> /etc/sudoers
 sleep 2
 
 # Instaling and configuring GRUB
