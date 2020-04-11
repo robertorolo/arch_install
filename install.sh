@@ -1,28 +1,52 @@
 #!/bin/bash
 
 echo "This script will install arch linux."
-sleep 3
+sleep 1
 
 # Set the keyboard layout
-keyboard_layout=us
-echo "Setting keyboard to: $keyboard_layout"
-loadkeys $keyboard_layout
-sleep 3
+KEYBOARD_LAYOUT=us
+echo "Setting keyboard to: $KEYBOARD_LAYOUT"
+loadkeys $KEYBOARD_LAYOUT
+sleep 1
 
 # Update the system clock
 timedatectl set-ntp true
 timedatectl status
-sleep 3
+sleep 1
 
 # Partition the disks
+SWAP_SIZE=1G
 fdisk -l
 read -p "Type sdx > " DISK
 echo "arch will be installed in $DISK"
-sleep 3
+sleep 1
 
 # Verify the boot mode
 if [[ -d /sys/firmware/efi/efivars ]]; then
   echo "Boot mode UEFI"
 else
   echo "Boot mode BIOS"
+  (
+  echo o            # Create a new empty DOS partition table
+  echo n            # Add a new partition
+  echo p            # Primary partition
+  echo 1            # Partition number
+  echo              # First sector (Accept default: 1)
+  echo +$SWAP_SIZE  # Last sector (Accept default: varies)
+  echo n            # Add a new partition
+  echo p            # Primary partition
+  echo 2            # Partition number
+  echo              # First sector (Accept default: 1)
+  echo              # Last sector (Accept default: varies)
+  echo a            # Flag as boot
+  echo w            # Write changes
+) | fdisk /dev/$DISK
 fi
+
+# Format the partitions
+mkswap /dev/${DISK}1
+swapon /dev/${DISK}1
+
+mkfs.ext4 /dev/${DISK}2
+fdisk -l
+sleep 1
