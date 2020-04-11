@@ -58,7 +58,7 @@ fdisk -l
 sleep 4
 
 # Mount the file systems
-echo "Mounting file systems. /dev/${DISK}1 /mnt"
+echo "Mounting file systems."
 mount /dev/${DISK}1 /mnt
 sleep 2
 
