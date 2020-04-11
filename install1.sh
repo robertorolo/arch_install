@@ -74,4 +74,5 @@ sleep 1
 
 # Change root into the new system:
 echo "Change root into the new system."
-arch-chroot /mnt
+cp install2.sh /mnt
+arch-chroot /mnt && ./install2.sh
