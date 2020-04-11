@@ -24,13 +24,21 @@ sleep 1
 # Verify the boot mode
 if [[ -d /sys/firmware/efi/efivars ]]; then
   echo "Boot mode UEFI"
+  exit 1
 else
   echo "Boot mode BIOS"
   (
   echo o # Create a new empty DOS partition table
   echo n # Add a new partition
   echo   # Primary partition
-  echo   # Partition number
+  echo 2 # Partition number
+  echo   # First sector (Accept default: 1)
+  echo +$SWAP_SIZE # Last sector (Accept default: varies)
+  echo t # Changing partition type
+  echo 82 # Set type to swap
+  echo n # Add a new partition
+  echo   # Primary partition
+  echo 1 # Partition number
   echo   # First sector (Accept default: 1)
   echo   # Last sector (Accept default: varies)
   echo a # Flag as boot
@@ -40,8 +48,8 @@ fi
 
 # Format the partitions
 echo "Formating partitions"
-#mkswap /dev/${DISK}1
-#swapon /dev/${DISK}1
+mkswap /dev/${DISK}2
+swapon /dev/${DISK}2
 
 mkfs.ext4 /dev/${DISK}1
 fdisk -l
@@ -52,15 +60,15 @@ echo "Mounting file systems."
 mount /dev/${DISK}1 /mnt
 sleep 2
 
-# Install essential packages
-echo "Instaling essential packages."
-pacstrap /mnt base linux linux-firmware
-
 # Generate an fstab file
 echo "Generating fstab file."
 genfstab -U /mnt >> /mnt/etc/fstab
 cat /mnt/etc/fstab
 sleep 1
+
+# Install essential packages
+echo "Instaling essential packages."
+pacstrap /mnt base linux linux-firmware
 
 # Change root into the new system:
 echo "Change root into the new system."
