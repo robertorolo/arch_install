@@ -3,6 +3,7 @@
 cd /
 DISK=sda
 BOOT=bios
+KEYBOARD_LAYOUT=us
 
 # Set the time zone
 echo "Setting timezone."
