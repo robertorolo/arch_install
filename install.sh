@@ -68,9 +68,9 @@ cat /mnt/etc/fstab
 sleep 1
 
 # Install essential packages
-echo "Instaling essential packages."
-pacstrap /mnt base linux linux-firmware
+#echo "Instaling essential packages."
+#pacstrap /mnt base linux linux-firmware
 
 # Change root into the new system:
-echo "Change root into the new system."
-arch-chroot /mnt
+#echo "Change root into the new system."
+#arch-chroot /mnt
