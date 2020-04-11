@@ -42,6 +42,7 @@ else
   echo   # First sector (Accept default: 1)
   echo   # Last sector (Accept default: varies)
   echo a # Flag as boot
+  echo 1 # Partition number to flag as boot
   echo w # Write changes
 ) | fdisk /dev/$DISK
 fi
