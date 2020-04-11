@@ -2,15 +2,23 @@
 
 echo "This script will install arch linux."
 
-# keyboard configuration
+# Set the keyboard layout
 keyboard_layout=us
-echo "Configuring keyboard as: $keyboard_layout"
+echo "Setting keyboard to: $keyboard_layout"
 loadkeys $keyboard_layout
 
-# defining if BIOS or UEFI
+# Update the system clock
+timedatectl set-ntp true
+timedatectl status
+
+# Verify the boot mode
 if [[ -d /sys/firmware/efi/efivars ]]; then
-  echo "UEFI system"
+  echo "Boot mode UEFI"
 else
-  echo "BIOS system"
+  echo "Boot mode BIOS"
 fi
-  
+
+# Partition the disks
+fdisk -l
+read -p "Type sdx > " DISK
+echo "arch will be installed in $DISK"
