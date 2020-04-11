@@ -12,7 +12,7 @@ sleep 2
 echo "Setting localization"
 echo en_US.UTF-8 UTF-8 >> /etc/locale.gen
 echo LANG=en_US.UTF-8 >> /etc/locale.conf
-cat KEYMAP=$KEYBOARD_LAYOUT >> /etc/vconsole.conf
+cat "KEYMAP=$KEYBOARD_LAYOUT" >> /etc/vconsole.conf
 sleep 2
 
 # Network configuration
@@ -32,12 +32,14 @@ sleep 2
 # Setting root password
 read -p "Type root passwd > " rootpwd
 echo  $rootpwd | passwd
+echo  $rootpwd | passwd
 sleep 2
 
 # Creating a user
 read -p "Type user name > " username
 read -p "Type user passwd > " userpwd
 useradd -m -g users -G wheel $username
+echo $userpwd | passwd $username
 echo $userpwd | passwd $username
 echo $username ALL=(ALL) ALL >> /etc/sudoers
 echo %wheel    ALL=(ALL) ALL >> /etc/sudoers
