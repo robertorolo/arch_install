@@ -1,5 +1,5 @@
 # arch_install
-A arch installation script for my personal use.
+An arch linux installation script for my personal use.
 
 ## Pre arch-chroot
 
