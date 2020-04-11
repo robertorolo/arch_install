@@ -55,22 +55,22 @@ swapon /dev/${DISK}2
 mkfs.ext4 /dev/${DISK}1
 
 fdisk -l
-sleep 3
+sleep 4
 
 # Mount the file systems
 echo "Mounting file systems."
 mount /dev/${DISK}1 /mnt
 sleep 2
 
+# Install essential packages
+echo "Instaling essential packages."
+pacstrap /mnt base linux linux-firmware
+
 # Generate an fstab file
 echo "Generating fstab file."
 genfstab -U /mnt >> /mnt/etc/fstab
 cat /mnt/etc/fstab
 sleep 1
-
-# Install essential packages
-echo "Instaling essential packages."
-pacstrap /mnt base linux linux-firmware
 
 # Change root into the new system:
 echo "Change root into the new system."
