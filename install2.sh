@@ -13,7 +13,7 @@ sleep 2
 echo "Setting localization"
 echo en_US.UTF-8 UTF-8 >> /etc/locale.gen
 echo LANG=en_US.UTF-8 >> /etc/locale.conf
-echo KEYMAP=$KEYBOARD_LAYOUT >> /etc/vconsole.conf
+echo -e "KEYMAP=$KEYBOARD_LAYOUT" >> /etc/vconsole.conf
 sleep 2
 
 # Network configuration
@@ -42,6 +42,7 @@ useradd -m -g users -G wheel $username
 echo -e "$userpwd\n$userpwd" | passwd $username
 echo -e "$username ALL=(ALL) ALL" >> /etc/sudoers
 echo -e "%wheel    ALL=(ALL) ALL" >> /etc/sudoers
+echo -e "root    ALL=(ALL:ALL) ALL" >> /etc/sudoers
 sleep 2
 
 # Instaling and configuring GRUB
