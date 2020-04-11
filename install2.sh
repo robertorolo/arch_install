@@ -45,7 +45,7 @@ sleep 2
 
 # Instaling and configuring GRUB
 pacman -S grub
-grub-install -–target=i386-pc -–recheck /dev/$DISK
+grub-install --target=i386-pc /dev/$DISK
 grub-mkconfig -o /boot/grub/grub.cfg
 sleep 2
 
