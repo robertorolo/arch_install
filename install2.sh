@@ -31,16 +31,14 @@ sleep 2
 
 # Setting root password
 read -p "Type root passwd > " rootpwd
-echo  $rootpwd | passwd
-echo  $rootpwd | passwd
+echo -e "$rootpwd\n$rootpwd" | passwd
 sleep 2
 
 # Creating a user
 read -p "Type user name > " username
 read -p "Type user passwd > " userpwd
 useradd -m -g users -G wheel $username
-echo $userpwd | passwd $username
-echo $userpwd | passwd $username
+echo -e "$userpwd\n$userpwd" | passwd $username
 echo $username ALL=(ALL) ALL >> /etc/sudoers
 echo %wheel    ALL=(ALL) ALL >> /etc/sudoers
 sleep 2
