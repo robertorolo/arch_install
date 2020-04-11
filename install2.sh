@@ -59,4 +59,5 @@ sleep 2
 
 # Finishing 
 echo "We are done."
+rm /mnt install2.sh
 exit
