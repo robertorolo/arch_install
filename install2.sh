@@ -12,7 +12,7 @@ sleep 2
 echo "Setting localization"
 echo en_US.UTF-8 UTF-8 >> /etc/locale.gen
 echo LANG=en_US.UTF-8 >> /etc/locale.conf
-cat "KEYMAP=$KEYBOARD_LAYOUT" >> /etc/vconsole.conf
+echo KEYMAP=$KEYBOARD_LAYOUT >> /etc/vconsole.conf
 sleep 2
 
 # Network configuration
