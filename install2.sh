@@ -2,6 +2,7 @@
 
 cd /
 DISK=sda
+BOOT=bios
 
 # Set the time zone
 echo "Setting timezone."
@@ -47,7 +48,11 @@ sleep 2
 
 # Instaling and configuring GRUB
 pacman -S grub
-grub-install --target=i386-pc /dev/$DISK
+if [ "$BOOT" == "bios" ]; then 
+  grub-install --target=i386-pc /dev/$DISK
+else
+  exit 1
+fi
 grub-mkconfig -o /boot/grub/grub.cfg
 sleep 2
 
