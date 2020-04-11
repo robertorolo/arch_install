@@ -45,22 +45,22 @@ else
   echo 1 # Partition number to flag as boot
   echo w # Write changes
 ) | fdisk /dev/$DISK
+  
+  # Format the partitions
+  echo "Formating partitions"
+  mkswap /dev/${DISK}2
+  swapon /dev/${DISK}2
+
+  mkfs.ext4 /dev/${DISK}1
+
+  fdisk -l
+  sleep 4
+
+  # Mount the file systems
+  echo "Mounting file systems."
+  mount /dev/${DISK}1 /mnt
+  sleep 2
 fi
-
-# Format the partitions
-echo "Formating partitions"
-mkswap /dev/${DISK}2
-swapon /dev/${DISK}2
-
-mkfs.ext4 /dev/${DISK}1
-
-fdisk -l
-sleep 4
-
-# Mount the file systems
-echo "Mounting file systems."
-mount /dev/${DISK}1 /mnt
-sleep 2
 
 # Install essential packages
 echo "Instaling essential packages."
