@@ -1,10 +1,3 @@
-#!/bin/bash
-
-DISK=sda
-BOOT=bios
-
-cd /
-
 # Set the time zone
 echo "Setting timezone."
 ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
