@@ -80,4 +80,5 @@ echo -e "#!/bin/bash" >> install2.sh
 echo -e "DISK=$DISK BOOT=$BOOT KEYBOARD_LAYOUT=$KEYBOARD_LAYOUT" >> install2.sh
 cat post_chroot >> install2.sh
 cp install2.sh /mnt
+chmod +x /mnt/install2.sh
 arch-chroot /mnt ./install2.sh
