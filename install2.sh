@@ -1,5 +1,8 @@
 #!/bin/bash
 
+DISK=sda
+BOOT=bios
+
 cd /
 
 # Set the time zone
