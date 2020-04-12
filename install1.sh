@@ -76,6 +76,7 @@ sleep 1
 
 # Change root into the new system:
 echo "Change root into the new system."
-#sed "1 a KEYBOARD_LAYOUT=$KEYBOARD_LAYOUT DISK=$DISK BOOT=$BOOT" install2.sh
-cp install2.sh /mnt
-arch-chroot /mnt ./install2.sh
+echo -e "#!/bin/bash" > install3.sh
+cat install2.sh >> install3.sh
+cp install3.sh /mnt
+arch-chroot /mnt ./install3.sh
