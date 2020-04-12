@@ -24,8 +24,10 @@ sleep 1
 # Verify the boot mode
 if [[ -d /sys/firmware/efi/efivars ]]; then
   echo "Boot mode UEFI"
+  BOOT=uefi
   exit 1
 else
+  BOOT=bios
   echo "Boot mode BIOS"
   (
   echo o # Create a new empty DOS partition table
@@ -74,5 +76,6 @@ sleep 1
 
 # Change root into the new system:
 echo "Change root into the new system."
+sed '1 KEYBOARD_LAYOUT=$KEYBOARD_LAYOUT DISK=$DISK BOOT=$BOOT' install2.sh
 cp install2.sh /mnt
-arch-chroot /mnt ./install2.sh
+arch-chroot /mnt
