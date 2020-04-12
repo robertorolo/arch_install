@@ -1,9 +1,6 @@
 #!/bin/bash
 
 cd /
-DISK=sda
-BOOT=bios
-KEYBOARD_LAYOUT=us
 
 # Set the time zone
 echo "Setting timezone."
@@ -59,5 +56,5 @@ sleep 2
 
 # Finishing 
 echo "We are done."
-rm /mnt install2.sh
+rm /mnt/install2.sh
 exit
