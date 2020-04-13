@@ -41,12 +41,14 @@ echo -e "root    ALL=(ALL:ALL) ALL" >> /etc/sudoers
 sleep 2
 
 # Instaling and configuring GRUB
-pacman -S grub
 if [ "$BOOT" == "bios" ]; then 
+  pacman -S grub
   grub-install --target=i386-pc /dev/$DISK
 else
-  exit 1
+  pacman -S grub-efi-x86_64 efibootmgr
+  grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=arch_grub
 fi
+
 grub-mkconfig -o /boot/grub/grub.cfg
 sleep 2
 
