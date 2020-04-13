@@ -4,7 +4,7 @@ echo "This script will install arch linux."
 sleep 1
 
 # Set the keyboard layout
-KEYBOARD_LAYOUT=us
+KEYBOARD_LAYOUT=uk
 echo "Setting keyboard to: $KEYBOARD_LAYOUT"
 loadkeys $KEYBOARD_LAYOUT
 sleep 1
