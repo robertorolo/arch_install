@@ -15,7 +15,7 @@ timedatectl status
 sleep 1
 
 # Partition the disks
-SWAP_SIZE=1G
+SWAP_SIZE=8G
 fdisk -l
 read -p "Type sdx > " DISK
 echo "arch will be installed in $DISK"
