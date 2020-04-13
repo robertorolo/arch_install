@@ -25,7 +25,48 @@ sleep 1
 if [[ -d /sys/firmware/efi/efivars ]]; then
   echo "Boot mode UEFI"
   BOOT=uefi
-  exit 1
+  (
+  echo g # Create a new empty GPT partition table
+  echo n # Add a new partition
+  echo 1 # Partition number
+  echo   # First sector (Accept default: 1)
+  echo +512M # Last sector (Accept default: varies)
+  echo t # Changing partition type
+  echo 1 # Set type to EFI
+  echo n # Add a new partition
+  echo 2 # Partition number
+  echo   # First sector (Accept default: 1)
+  echo +$SWAP_SIZE # Last sector (Accept default: varies)
+  echo t # Changing partition type
+  echo 2 # Choosing partition
+  echo 19 # Set type to swap
+  echo n # Add a new partition
+  echo 3 # Partition number
+  echo   # First sector (Accept default: 1)
+  echo   # Last sector (Accept default: varies)
+  echo w # Write changes
+) | fdisk /dev/$DISK
+  
+  # Format the partitions
+  echo "Formating partitions"
+  mkfs.fat -F32 /dev/${DISK}1
+  
+  mkswap /dev/${DISK}2
+  swapon /dev/${DISK}2
+
+  mkfs.ext4 /dev/${DISK}3
+
+  fdisk -l
+  sleep 4
+
+  # Mount the file systems
+  echo "Mounting file systems."
+  mount /dev/${DISK}3 /mnt
+  mkdir /mnt/boot
+  mkdir /mnt/boot/efi
+  mount /dev/${DISK}1 /mnt/boot/efi
+  
+  sleep 2
 else
   BOOT=bios
   echo "Boot mode BIOS"
