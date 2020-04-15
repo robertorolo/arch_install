@@ -107,7 +107,7 @@ fi
 
 # Install essential packages
 echo "Instaling essential packages."
-pacstrap /mnt base linux linux-firmware git vim man-db man-pages texinfo networkmanager sudo
+pacstrap /mnt base linux linux-firmware git vim man-db man-pages texinfo networkmanager sudo curl
 
 # Generate an fstab file
 echo "Generating fstab file."
