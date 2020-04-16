@@ -41,7 +41,7 @@ Please Select:
 
 	case "$REPLY" in
 	0)	echo "Continue installation."
-		continue
+		break
 		;;
 	1)	echo "User creation"
 		read -p "Type user name > " username
@@ -54,6 +54,7 @@ Please Select:
 		sleep 2
 		;;
 	*)	echo "Invalid entry" >&2
+		continue
 		;;
 	esac
 done
