@@ -50,7 +50,6 @@ Please Select:
 		echo -e "$userpwd\n$userpwd" | passwd $username
 		echo -e "$username ALL=(ALL) ALL" >> /etc/sudoers
 		echo -e "%wheel    ALL=(ALL) ALL" >> /etc/sudoers
-		echo -e "root    ALL=(ALL:ALL) ALL" >> /etc/sudoers
 		sleep 2
 		;;
 	*)	echo "Invalid entry" >&2
@@ -58,6 +57,7 @@ Please Select:
 		;;
 	esac
 done
+echo -e "root    ALL=(ALL:ALL) ALL" >> /etc/sudoers
 
 # Instaling and configuring GRUB
 if [ "$BOOT" == "bios" ]; then 
