@@ -48,9 +48,8 @@ Please Select:
 	1)	echo "User creation"
 		read -p "Type user name > " username
 		read -p "Type user passwd > " userpwd
-		useradd -m -g users -G wheel $username
+		useradd -m -g wheel $username
 		echo -e "$userpwd\n$userpwd" | passwd $username
-		echo -e "$username ALL=(ALL) ALL" >> /etc/sudoers
 		echo -e "%wheel    ALL=(ALL) ALL" >> /etc/sudoers
 		sleep 2
 		;;
