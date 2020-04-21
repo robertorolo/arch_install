@@ -16,7 +16,7 @@ sleep 1
 
 # Partition the disks
 read -p "Swap partition size in G > " SWAP_SIZE
-echo ""$SWAP_SIZE"G swap"
+echo $SWAP_SIZE GB swap
 fdisk -l
 read -p "Type sdx > " DISK
 echo "arch will be installed in $DISK"
