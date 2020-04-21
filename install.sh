@@ -77,7 +77,7 @@ else
   echo   # Primary partition
   echo 2 # Partition number
   echo   # First sector (Accept default: 1)
-  echo +$SWAP_SIZE # Last sector (Accept default: varies)
+  echo +"$SWAP_SIZE"G # Last sector (Accept default: varies)
   echo t # Changing partition type
   echo 82 # Set type to swap
   echo n # Add a new partition
