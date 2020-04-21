@@ -4,7 +4,7 @@ echo "This script will install arch linux."
 sleep 1
 
 # Set the keyboard layout
-KEYBOARD_LAYOUT=uk
+read -p "What is the keyboard layout? (tip: uk/us): " > KEYBOARD_LAYOUT
 echo "Setting keyboard to: $KEYBOARD_LAYOUT"
 loadkeys $KEYBOARD_LAYOUT
 sleep 1
@@ -15,7 +15,8 @@ timedatectl status
 sleep 1
 
 # Partition the disks
-SWAP_SIZE=8G
+read -p "Swap partition size in G: " > SWAP_SIZE
+echo ""$SWAP_SIZE"G swap"
 fdisk -l
 read -p "Type sdx > " DISK
 echo "arch will be installed in $DISK"
