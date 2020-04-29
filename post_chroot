@@ -11,7 +11,8 @@ echo pt_BR.UTF-8 UTF-8 >> /etc/locale.gen
 echo LANG=en_US.UTF-8 >> /etc/locale.conf
 echo LANG=pt_BR.UTF-8 >> /etc/locale.conf
 echo -e "KEYMAP=$KEYBOARD_LAYOUT" >> /etc/vconsole.conf
-sudo locale-gen pt_BR.UTF-8
+sudo locale-gen en_US.UTF-8
+
 sleep 2
 
 # Network configuration
