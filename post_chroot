@@ -74,5 +74,7 @@ fi
 grub-mkconfig -o /boot/grub/grub.cfg
 sleep 2
 
-# Finishing 
+# Finishing
+exit
+umount -R /mnt
 echo "We are done."
