@@ -108,7 +108,7 @@ fi
 
 # Install essential packages
 pacman -S reflector
-reflector --sort rate --protocol https --fastest 50 --number 100 --save /etc/pacman.d/mirrorlist
+reflector --verbose --sort rate --protocol https --fastest 50 --number 100 --save /etc/pacman.d/mirrorlist
 echo "Instaling essential packages."
 pacstrap /mnt base linux linux-firmware git nano man-db man-pages texinfo networkmanager sudo curl
 
