@@ -75,12 +75,20 @@ grub-mkconfig -o /boot/grub/grub.cfg
 sleep 2
 
 # Finishing
+
+echo Installing yay
+mkdir ~/.local/src
+cd ~/.local/src
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+
 while true; do
     read -p 'Install xfce? yes/no: ' input
     case $input in
         [yY]*)
             echo 'Installing xfce'
-			pacman -S xorg xfce4 xfce4-goodies lightdm lightdm-gtk-greeter
+			pacman -S xorg xfce4 xfce4-goodies lightdm lightdm-gtk-greeter chromium network-manager-applet pulseaudio pavucontrol
 			systemctl enable lightdm
             break
             ;;
