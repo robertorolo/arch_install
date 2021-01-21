@@ -1,5 +1,5 @@
 # arch_install
-An arch linux installation script for my personal use. Works on my Thinkpad T450!
+An arch linux installation script for my personal use. Works on my Thinkpad T450 and X220!
 
 1. `pacman -Sy git`
 2. `git clone https://github.com/robertorolo/arch_install.git`
