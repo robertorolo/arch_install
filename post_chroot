@@ -75,26 +75,9 @@ grub-mkconfig -o /boot/grub/grub.cfg
 sleep 2
 
 # Finishing
-
-while true; do
-    read -p 'Install xfce? yes/no: ' input
-    case $input in
-        [yY]*)
-            echo 'Installing xfce'
-		pacman -S xorg xfce4 xfce4-goodies lightdm lightdm-gtk-greeter chromium network-manager-applet pulseaudio pavucontrol xf86-video-intel 
-		systemctl enable lightdm
-            break
-            ;;
-        [nN]*)
-            echo 'Continue installation.'
-            exit 1
-            ;;
-         *)
-            echo 'Invalid input' >&2
-    esac
-done
-
 systemctl enable NetworkManager.service
+systemctl start NetworkManager.service
+
 exit
 umount -R /mnt
 echo "We are done."
