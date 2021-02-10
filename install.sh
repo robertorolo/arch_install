@@ -108,7 +108,7 @@ fi
 
 # Install essential packages
 pacman -S reflector
-reflector --verbose -l 200 -n 20 -p http --sort rate --save /etc/pacman.d/mirrorlist
+reflector --sort rate -c 'Brazil' -f 10 --save /etc/pacman.d/mirrorlist
 echo "Instaling essential packages."
 pacstrap /mnt base linux linux-firmware git nano man-db man-pages texinfo networkmanager sudo curl
 
