@@ -106,6 +106,35 @@ else
   sleep 2
 fi
 
+echo "Mount home in another disk?"
+select se in yes no; do
+	case $se in
+	yes)
+	fdisk -l
+	read -p "Type sdx > " DISK
+	(
+  	echo d #delete partition
+	echo n # Add a new partition
+  	echo 1 # Partition number
+  	echo   # Primary partition
+  	echo   # First sector (Accept default: 1)
+  	echo   # Last sector (Accept default: varies)
+  	echo w # Write changes
+	) | fdisk /dev/$DISK
+
+	mkfs.ext4 /dev/$DISK1
+	mount /dev/$DISK1 /home
+		
+	no)
+	break
+	;;
+
+	*)
+	echo "Invalid entry."
+	;;
+	esac
+done
+
 # Install essential packages
 pacman -S reflector
 reflector --sort rate -c 'Brazil' -f 10 --save /etc/pacman.d/mirrorlist
