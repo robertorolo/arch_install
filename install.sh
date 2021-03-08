@@ -113,7 +113,7 @@ select se in yes no; do
 	fdisk -l
 	read -p "Type sdx > " DISK
 	(
-  	echo d #delete partition
+  	echo g # Create a new empty GPT partition table
 	echo n # Add a new partition
   	echo 1 # Partition number
   	echo   # Primary partition
