@@ -140,10 +140,10 @@ select se in yes no; do
 done
 
 # Install essential packages
-pacman -S reflector
-reflector --sort rate -c 'Brazil' -f 10 --save /etc/pacman.d/mirrorlist
+#pacman -S reflector
+#reflector --sort rate -c 'Brazil' -f 10 --save /etc/pacman.d/mirrorlist
 echo "Instaling essential packages."
-pacstrap /mnt base linux linux-firmware git nano man-db man-pages texinfo networkmanager sudo curl
+pacstrap /mnt base linux linux-firmware git neovim man-db man-pages texinfo networkmanager sudo curl
 
 # Generate an fstab file
 echo "Generating fstab file."
