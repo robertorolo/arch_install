@@ -109,29 +109,32 @@ fi
 echo "Mount home in another disk?"
 select se in yes no; do
 	case $se in
-	yes)
-	fdisk -l
-	read -p "Type sdx > " DISK
-	(
-  	echo g # Create a new empty GPT partition table
-	echo n # Add a new partition
-  	echo 1 # Partition number
-  	echo   # Primary partition
-  	echo   # First sector (Accept default: 1)
-  	echo   # Last sector (Accept default: varies)
-  	echo w # Write changes
-	) | fdisk /dev/$DISK
+	
+		yes)
+		fdisk -l
+		read -p "Type sdx > " DISK
+		(
+		echo g # Create a new empty GPT partition table
+		echo n # Add a new partition
+		echo 1 # Partition number
+		echo   # Primary partition
+		echo   # First sector (Accept default: 1)
+		echo   # Last sector (Accept default: varies)
+		echo w # Write changes
+		) | fdisk /dev/$DISK
 
-	mkfs.ext4 /dev/$DISK1
-	mount /dev/$DISK1 /home
-		
-	no)
-	break
-	;;
+		mkfs.ext4 /dev/$DISK1
+		mount /dev/$DISK1 /home
+		break
+		;;
 
-	*)
-	echo "Invalid entry."
-	;;
+		no)
+		break
+		;;
+
+		*)
+		echo "Invalid entry."
+		;;
 	esac
 done
 
