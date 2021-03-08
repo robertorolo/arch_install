@@ -113,6 +113,7 @@ select se in yes no; do
 		yes)
 		fdisk -l
 		read -p "Type sdx > " DISK
+		umount /dev/$DISK
 		(
 		echo g # Create a new empty GPT partition table
 		echo n # Add a new partition
