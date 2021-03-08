@@ -113,7 +113,6 @@ select se in yes no; do
 		yes)
 		fdisk -l
 		read -p "Type sdx > " DISK
-		umount /dev/$DISK
 		(
 		echo g # Create a new empty GPT partition table
 		echo n # Add a new partition
@@ -124,8 +123,8 @@ select se in yes no; do
 		echo w # Write changes
 		) | fdisk /dev/$DISK
 
-		mkfs.ext4 /dev/$DISK1
-		mount /dev/$DISK1 /home
+		mkfs.ext4 /dev/${DISK}1
+		mount /dev/${DISK}1 /home
 		break
 		;;
 
