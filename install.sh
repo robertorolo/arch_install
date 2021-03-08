@@ -124,7 +124,7 @@ select se in yes no; do
 		) | fdisk /dev/$DISKH
 
 		mkfs.ext4 /dev/${DISKH}1
-		mount /dev/${DISKH}1 /home
+		mount /dev/${DISKH}1 /mnt/home
 		break
 		;;
 
